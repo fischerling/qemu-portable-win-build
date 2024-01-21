@@ -1,0 +1,32 @@
+name: Build qemu windows binaries
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+        run:
+          shell: msys2 {0}
+      steps:
+      - uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: >-
+            base-devel
+            mingw-w64-x86_64-toolchain
+            git
+            python
+            ninja
+      - uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: >-
+            mingw-w64-x86_64-glib2
+            mingw-w64-x86_64-pixman
+            python-setuptools
+      - uses: actions/checkout@v4
+        with:
+          repository: https://gitlab.com/qemu-project/qemu.git
+      - uses: msys2/setup-msys2@v2
+        run: ./configure
+      - uses: msys2/setup-msys2@v2
+        run: make
