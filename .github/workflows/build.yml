@@ -21,8 +21,5 @@ jobs:
             mingw-w64-x86_64-glib2
             mingw-w64-x86_64-pixman
             python-setuptools
-      - uses: actions/checkout@v4
-        with:
-          repository: https://gitlab.com/qemu-project/qemu.git
-      - run: ./configure
-      - run: make
+      - run: git clone https://gitlab.com/qemu-project/qemu.git
+      - run: cd qemu; ./configure && make
