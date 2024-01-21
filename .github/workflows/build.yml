@@ -1,12 +1,14 @@
 name: Build qemu windows binaries
+
 on: [push]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     defaults:
-        run:
-          shell: msys2 {0}
-      steps:
+      run:
+        shell: msys2 {0}
+    steps:
       - uses: msys2/setup-msys2@v2
         with:
           update: true
