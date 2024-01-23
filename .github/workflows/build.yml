@@ -23,7 +23,7 @@ jobs:
             mingw-w64-x86_64-SDL2
             python-setuptools
       - run: git clone https://gitlab.com/qemu-project/qemu.git
-      - run: mkdir qemu/build; ./configure && make
+      - run: mkdir qemu/build
       - run: cd qemu/build; ../configure --target-list=i386-softmmu --enable-sdl --static
       - run: cd qemu/build; make
       - name: Archive production artifacts
