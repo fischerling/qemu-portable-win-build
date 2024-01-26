@@ -24,12 +24,17 @@ jobs:
             mingw-w64-x86_64-gtk3
             mingw-w64-x86_64-SDL2
             mingw-w64-x86_64-libslirp
-      - run: git clone https://gitlab.com/qemu-project/qemu.git
-      - run: mkdir qemu/build
-      - run: cd qemu/build; ../configure --target-list=i386-softmmu --enable-sdl --enable-gtk --disable-werror --disable-stack-protector
-      - run: cd qemu/build; make
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: build
-          path: qemu/build
+      # - run: git clone https://gitlab.com/qemu-project/qemu.git
+      # - run: mkdir qemu/build
+      # - run: cd qemu/build; ../configure --target-list=i386-softmmu --enable-sdl --enable-gtk --disable-werror --disable-stack-protector
+      # - run: cd qemu/build; make
+      # - name: Archive production artifacts
+        # uses: actions/upload-artifact@v4
+        # with:
+          # name: build
+          # path: qemu/build
+      - run: lpFileName libbz2-1.dll liblzo2-2.dll libcairo-2.dll libwinpthread-1.dll
+      # - run: cp libbz2-1.dll qemu/build
+      # - run: cp liblzo2-2.dll qemu/build
+      # - run: cp libcairo-2.dll qemu/build
+      # - run: cp libwinpthread-1.dll qemu/build
