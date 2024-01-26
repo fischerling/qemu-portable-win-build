@@ -33,7 +33,7 @@ jobs:
         # with:
           # name: build
           # path: qemu/build
-      - run: lpFileName libbz2-1.dll liblzo2-2.dll libcairo-2.dll libwinpthread-1.dll
+      - run: pacman -Ql mingw-w64-x86_64-libwinpthread-git-11.0.0.r551.g86a5e0f41-1 mingw-w64-x86_64-zlib-1.3.1-1 ngw-w64-x86_64-bzip2-1.0.8-3 mingw-w64-x86_64-cairo-1.18.0-1
       # - run: cp libbz2-1.dll qemu/build
       # - run: cp liblzo2-2.dll qemu/build
       # - run: cp libcairo-2.dll qemu/build
