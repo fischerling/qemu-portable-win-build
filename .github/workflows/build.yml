@@ -28,13 +28,13 @@ jobs:
       - run: mkdir qemu/build
       - run: cd qemu/build; ../configure --target-list=i386-softmmu --enable-sdl --enable-gtk --disable-werror --disable-stack-protector --disable-guest-agent --disable-vnc --disable--tools
       - run: cd qemu/build; make
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: build
-          path: qemu/build
       - run: pacman -Ql mingw-w64-x86_64-libwinpthread-git mingw-w64-x86_64-zlib mingw-w64-x86_64-bzip2 mingw-w64-x86_64-cairo
       - run: cp /mingw/bin/libbz2-1.dll qemu/build
       - run: cp /mingw/bin/liblzo2-2.dll qemu/build
       - run: cp /mingw/bin/libcairo-2.dll qemu/build
       - run: cp /mingw/bin/libwinpthread-1.dll qemu/build
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: qemu/build
