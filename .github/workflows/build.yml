@@ -26,7 +26,7 @@ jobs:
             mingw-w64-x86_64-libslirp
       - run: git clone https://gitlab.com/qemu-project/qemu.git
       - run: mkdir qemu/build
-      - run: cd qemu/build; ../configure --target-list=i386-softmmu --enable-sdl --enable-gtk --disable-werror --disable-stack-protector --disable-guest-agent --disable-vnc --disable--tools
+      - run: cd qemu/build; ../configure --target-list=i386-softmmu --enable-sdl --enable-gtk --disable-werror --disable-stack-protector --disable-guest-agent --disable-vnc --disable-tools
       - run: cd qemu/build; make
       - run: cp /mingw/bin/libbz2-1.dll qemu/build
       - run: cp /mingw/bin/liblzo2-2.dll qemu/build
