@@ -26,9 +26,9 @@ jobs:
       - name: Cache build dir
         id: cached-build
         uses: actions/cache@v4
-          with:
-            path: qemu/build
-            key: c4cc4b2-cached-build
+        with:
+          path: qemu/build
+          key: c4cc4b2-cached-build
 
       - name: Clone the qemu source
         if: steps.cached-build.outputs.cache-hit != 'true'
