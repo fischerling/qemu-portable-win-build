@@ -64,7 +64,7 @@ jobs:
           /mingw64/bin/zlib1.dll
           /mingw64/bin/libzstd.dll
           /mingw64/bin/libgcc_s_seh-1.dll
-          /mingw64/bin/libstd++-6.dll
+          /mingw64/bin/libstdc++-6.dll
           /mingw64/bin/libfontconfig-1.dll
           /mingw64/bin/libfreetype-6.dll
           qemu/build
