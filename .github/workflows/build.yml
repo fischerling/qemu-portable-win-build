@@ -96,10 +96,14 @@ jobs:
           /mingw64/bin/libpango-1.0-0.dll
           /mingw64/bin/libpangocairo-1.0-0.dll
           /mingw64/bin/libpangowin32-1.0-0.dll
+          /mingw64/bin/libpangoft2-1.0-0.dll
           /mingw64/bin/libffi-8.dll
           /mingw64/bin/libpcre2-8-0.dll
           /mingw64/bin/libharfbuzz-0.dll
           /mingw64/bin/libatk-1.0-0.dll
+          /mingw64/bin/libexpat-1.dll
+          /mingw64/bin/libbrotlidec.dll
+          /mingw64/bin/libthai-0.dll
           qemu/build
       - name: Archive production artifacts
         uses: actions/upload-artifact@v4
