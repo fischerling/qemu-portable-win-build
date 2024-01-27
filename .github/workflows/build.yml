@@ -58,6 +58,10 @@ jobs:
           /mingw64/bin/libintl-8.dll
           /mingw64/bin/libncursesw6.dll
           /mingw64/bin/libpixman-1-0.dll
+          /mingw64/bin/libpng16-16.dll
+          /mingw64/bin/zlib1.dll
+          /mingw64/bin/libzstd.dll
+          /mingw64/bin/libgcc_s_seh-1.dll
           qemu/build
       - run: rm -r qemu/build/tests
       - name: Archive production artifacts
