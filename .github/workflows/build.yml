@@ -28,7 +28,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: qemu/build
-          key: c4cc4b2-cached-build
+          key: a98e9a1-cached-build
 
       - name: Clone the qemu source
         if: steps.cached-build.outputs.cache-hit != 'true'
@@ -64,6 +64,10 @@ jobs:
 
       - name: Delete built tests
         run: rm -r qemu/build/tests
+        if: steps.cached-build.outputs.cache-hit != 'true'
+
+      - name: Copy BIOS file
+        run: cp qemu/pc-bios/bios-256k.bin qemu/build/pc-bios/bios-256k.bin
         if: steps.cached-build.outputs.cache-hit != 'true'
 
       - name: Copy required DLLs into the build directory
@@ -108,8 +112,6 @@ jobs:
           /mingw64/bin/libgraphite2.dll
           /mingw64/bin/libdatrie-1.dll
           qemu/build
-      - name: Copy BIOS file
-        run: cp qemu/pc-bios/bios-256k.bin qemu/build/pc-bios/bios-256k.bin
       - name: Archive production artifacts
         uses: actions/upload-artifact@v4
         with:
