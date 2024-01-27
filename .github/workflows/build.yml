@@ -28,37 +28,37 @@ jobs:
       - run: > 
           cd qemu/build;
           ../configure
-            --target-list=i386-softmmu
-            --disable-werror
-            --disable-stack-protector
-            --enable-gtk
-            --disable-sdl
-            --disable-dsound
-            --disable-dbus-display
-            --disable-guest-agent
-            --disable-vnc
-            --disable-tools
-            --disable-bochs
+          --target-list=i386-softmmu
+          --disable-werror
+          --disable-stack-protector
+          --enable-gtk
+          --disable-sdl
+          --disable-dsound
+          --disable-dbus-display
+          --disable-guest-agent
+          --disable-vnc
+          --disable-tools
+          --disable-bochs
       - run: cd qemu/build; make
       - name: Copy required DLLs into the build directory
         run: > 
           cp /mingw64/bin/libbz2-1.dll
-             /mingw64/bin/liblzo2-2.dll
-             /mingw64/bin/libcairo-2.dll
-             /mingw64/bin/libwinpthread-1.dll
-             /mingw64/bin/libepoxy-0.dll
-             /mingw64/bin/libgdk-3-0.dll
-             /mingw64/bin/libgdk_pixbuf-2.0-0.dll
-             /mingw64/bin/libgio-2.0-0.dll
-             /mingw64/bin/libglib-2.0-0.dll
-             /mingw64/bin/libgmodule-2.0-0.dll
-             /mingw64/bin/libgobject-2.0-0.dll
-             /mingw64/bin/libgtk-3-0.dll
-             /mingw64/bin/libiconv-2.dll
-             /mingw64/bin/libintl-8.dll
-             /mingw64/bin/libncursesw6.dll
-             /mingw64/bin/libpixman-1-0.dll
-             qemu/build
+          /mingw64/bin/liblzo2-2.dll
+          /mingw64/bin/libcairo-2.dll
+          /mingw64/bin/libwinpthread-1.dll
+          /mingw64/bin/libepoxy-0.dll
+          /mingw64/bin/libgdk-3-0.dll
+          /mingw64/bin/libgdk_pixbuf-2.0-0.dll
+          /mingw64/bin/libgio-2.0-0.dll
+          /mingw64/bin/libglib-2.0-0.dll
+          /mingw64/bin/libgmodule-2.0-0.dll
+          /mingw64/bin/libgobject-2.0-0.dll
+          /mingw64/bin/libgtk-3-0.dll
+          /mingw64/bin/libiconv-2.dll
+          /mingw64/bin/libintl-8.dll
+          /mingw64/bin/libncursesw6.dll
+          /mingw64/bin/libpixman-1-0.dll
+          qemu/build
       - run: rm -r qemu/build/tests
       - name: Archive production artifacts
         uses: actions/upload-artifact@v4
