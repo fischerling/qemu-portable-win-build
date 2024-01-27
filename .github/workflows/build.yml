@@ -22,10 +22,26 @@ jobs:
             mingw-w64-x86_64-pixman
             python-setuptools
             mingw-w64-x86_64-gtk3
-      - run: git clone https://gitlab.com/qemu-project/qemu.git
+
+      - name: Cache build dir
+        id: cached-build
+        uses: actions/cache@v4
+          with:
+            path: qemu/build
+            key: c4cc4b2-cached-build
+
+      - name: Clone the qemu source
+        if: steps.cached-build.outputs.cache-hit != 'true'
+        run: git clone https://gitlab.com/qemu-project/qemu.git
+
       - run: git -C qemu checkout v8.2.0
+        if: steps.cached-build.outputs.cache-hit != 'true'
+
       - run: mkdir qemu/build
-      - run: > 
+        if: steps.cached-build.outputs.cache-hit != 'true'
+
+      - name: Configure QEMU build
+        run: >
           cd qemu/build;
           ../configure
           --target-list=i386-softmmu
@@ -40,9 +56,18 @@ jobs:
           --disable-vnc
           --disable-tools
           --disable-bochs
-      - run: cd qemu/build; make
+        if: steps.cached-build.outputs.cache-hit != 'true'
+
+      - name: Build QEMU
+        run: cd qemu/build; make
+        if: steps.cached-build.outputs.cache-hit != 'true'
+
+      - name: Delete built tests
+        run: rm -r qemu/build/tests
+        if: steps.cached-build.outputs.cache-hit != 'true'
+
       - name: Copy required DLLs into the build directory
-        run: > 
+        run: >
           cp /mingw64/bin/libbz2-1.dll
           /mingw64/bin/liblzo2-2.dll
           /mingw64/bin/libcairo-2.dll
@@ -68,7 +93,6 @@ jobs:
           /mingw64/bin/libfontconfig-1.dll
           /mingw64/bin/libfreetype-6.dll
           qemu/build
-      - run: rm -r qemu/build/tests
       - name: Archive production artifacts
         uses: actions/upload-artifact@v4
         with:
